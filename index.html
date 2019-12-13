@@ -91,10 +91,8 @@
             }
             
             function agregarItemSQL(tx){
-
                 var titulo = document.getElementById("titulo").value;
                 var autor = document.getElementById("autor").value;
-
                 tx.executeSql('INSERT INTO libros (titulo, autor) VALUES ("'+  titulo+'"  ,"'+  autor+'")', [] , leerBD, errorBD);
                 alert("item insertado");
             }
@@ -114,10 +112,28 @@
             function errorBD(){
                 alert("un error en la base de datos");
             }
+
+            function actualizar(){
+
+ var id=$("#id").text();
+  var hermano=$("#titulo").val();
+  var regalo=$("#autor").val()
+  myDB.transaction(function(transaction) {
+    var executeQuery = "UPDATE libros SET titulo=?, autor=? WHERE id=?";
+    transaction.executeSql(executeQuery, [hermano,regalo,id],
+      //On Success
+      function(tx, result) { alert('Datos actualizados con éxtio');},
+      //On Error
+      function(error){alert('Ocurrió un error');});
+  });
+}
             
             </script>
     </head>
     <body >
+
+        <p>Escribe el id para actualizar</p>
+        <input type="text" id="titulo" placeholder="id" autocomplete="off" name="id" required> </div>
         
         <p>Escribe el titulo</p>
         <input type="text" id="titulo" placeholder="Titulo" autocomplete="off" name="titulo" required> </div>
@@ -127,6 +143,9 @@
         
         <button onclick="leerBaseDeDatos()"> leer Base de datos </button>
         <button onclick="agregarItem()"> Insertar nuevo libro</button><br>
+
+
+         <button onclick="actualizar()"> Actualizar</button><br>
 
         <button onclick=" borarUltimo()"> Borrar libros de Oscar Wilde</button>
         
