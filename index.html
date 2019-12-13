@@ -115,11 +115,11 @@
 
             function actualizar(){
 
- var id=$("#id").text();
+ 
   var hermano=$("#titulo").val();
   var regalo=$("#autor").val()
   myDB.transaction(function(transaction) {
-    var executeQuery = "UPDATE libros SET titulo=?, autor=? WHERE id=?";
+    var executeQuery = "UPDATE libros SET titulo=?, autor=? WHERE autor=?";
     transaction.executeSql(executeQuery, [hermano,regalo,id],
       //On Success
       function(tx, result) { alert('Datos actualizados con éxtio');},
@@ -132,8 +132,7 @@
     </head>
     <body >
 
-        <p>Escribe el id para actualizar</p>
-        <input type="text" id="titulo" placeholder="id" autocomplete="off" name="id" required> </div>
+        
         
         <p>Escribe el titulo</p>
         <input type="text" id="titulo" placeholder="Titulo" autocomplete="off" name="titulo" required> </div>
