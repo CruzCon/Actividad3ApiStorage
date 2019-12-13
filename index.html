@@ -34,13 +34,13 @@
                 
                 
                 // si no existe la tabla libros, la crea y agrega 2 columnas.
-                tx.executeSql('CREATE TABLE IF NOT EXISTS libros (id, titulo, autor)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS libros (ID, titulo, autor)');
                 
                 
                 // Una vez creada la tabla, inserta entradas en ella
-                tx.executeSql('INSERT INTO libros (id, titulo, autor) VALUES ("1","Manual del guerrero movil", "Carlos Solis")');
-                tx.executeSql('INSERT INTO libros (id, titulo, autor) VALUES ("2","Abraham Lincoln: Cazador de Vampiros", "Seth Grahame-Smith")');
-                tx.executeSql('INSERT INTO libros (id, titulo, autor) VALUES ("3","Alicia en el pais de las maravillas", "Lewis Caroll")');
+                tx.executeSql('INSERT INTO libros (id, titulo, autor) VALUES ("","Manual del guerrero movil", "Carlos Solis")');
+                tx.executeSql('INSERT INTO libros (id, titulo, autor) VALUES ("","Abraham Lincoln: Cazador de Vampiros", "Seth Grahame-Smith")');
+                tx.executeSql('INSERT INTO libros (id, titulo, autor) VALUES ("","Alicia en el pais de las maravillas", "Lewis Caroll")');
                 
             }
             
@@ -78,7 +78,7 @@
                 var lista = ""
                 for(var a=0; a < resultados.rows.length; a++){
                     lista += "<li>"
-                     lista += "<b>id:</b> " + resultados.rows.item(a).id + "<br>";
+                     lista += "<b>ID:</b> " + resultados.rows.item(a).ID + "<br>";
                     lista += "<b>Titulo:</b> " + resultados.rows.item(a).titulo + "<br>";
                     lista += "<b>Autor:</b> " + resultados.rows.item(a).autor + "<br>";
                     lista += "</li>"
@@ -92,10 +92,10 @@
             }
             
             function agregarItemSQL(tx){
-                var id = document.getElementById("id").value;
+                var id = document.getElementById("ID").value;
                 var titulo = document.getElementById("titulo").value;
                 var autor = document.getElementById("autor").value;
-                tx.executeSql('INSERT INTO libros (id, titulo, autor) VALUES ("'+id+'","'+  titulo+'"  ,"'+  autor+'")', [] , leerBD, errorBD);
+                tx.executeSql('INSERT INTO libros (ID, titulo, autor) VALUES ("'+ID+'","'+  titulo+'"  ,"'+  autor+'")', [] , leerBD, errorBD);
                 alert("item insertado");
             }
             
@@ -117,11 +117,11 @@
 
             function actualizar(){
 
-var id = document.getElementById("id").value;
+var ID = document.getElementById("ID").value;
 var titulo = document.getElementById("titulo").value;
 var autor = document.getElementById("autor").value;
 
-  tx.executeSql('UPDATE libros SET titulo="'+  titulo+'", autor="'+ autor+'" WHERE id="'+  id+'")', [] , leerBD, errorBD);
+  tx.executeSql('UPDATE libros SET titulo="'+  titulo+'", autor="'+ autor+'" WHERE ID="'+  ID+'")', [] , leerBD, errorBD);
   alert("libro actualizado");
     
  }
@@ -130,8 +130,8 @@ var autor = document.getElementById("autor").value;
     </head>
     <body >
 
-         <p>Escribe el titulo</p>
-        <input type="text" id="id" placeholder="id" autocomplete="off" name="id" required> </div>
+         <p>Escribe el id</p>
+        <input type="number" id="ID" placeholder="ID"  name="ID" required> </div>
         
         <p>Escribe el titulo</p>
         <input type="text" id="titulo" placeholder="Titulo" autocomplete="off" name="titulo" required> </div>
