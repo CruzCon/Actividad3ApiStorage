@@ -116,7 +116,7 @@
 
             function actualizar(){
 
- 
+ var id = document.getElementById("id").value;
   var titulo = document.getElementById("titulo").value;
                 var autor = document.getElementById("autor").value;
   myDB.transaction(function(transaction) {
@@ -133,7 +133,8 @@
     </head>
     <body >
 
-        
+         <p>Escribe el titulo</p>
+        <input type="text" id="id" placeholder="id" autocomplete="off" name="id" required> </div>
         
         <p>Escribe el titulo</p>
         <input type="text" id="titulo" placeholder="Titulo" autocomplete="off" name="titulo" required> </div>
